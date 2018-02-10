@@ -19,19 +19,34 @@ func compareFibs(a []uint, b []uint) bool {
 }
 
 func TestFibonacci13(t *testing.T) {
-	fibs := Fibonacci(13)
+	fibs, err := Fibonacci(13)
 	expected := []uint{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
 
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
 	if !compareFibs(fibs, expected) {
 		t.Errorf("Expected %v, got %v", expected, fibs)
 	}
 }
 
 func TestFibonacci0(t *testing.T) {
-	fibs := Fibonacci(0)
+	fibs, err := Fibonacci(0)
 	expected := []uint{0}
 
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
 	if !compareFibs(fibs, expected) {
 		t.Errorf("Expected %v, got %v", expected, fibs)
 	}
+}
+
+func TestFibonacci95(t *testing.T) {
+	_, err := Fibonacci(94)
+
+	if err == nil {
+		t.Error("Expected error, got none")
+	}
+
 }

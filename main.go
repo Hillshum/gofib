@@ -18,7 +18,12 @@ func fib(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 		return
 	}
 	enc := json.NewEncoder(w)
-	enc.Encode(fibonacci.Fibonacci(n))
+	fibs, err := fibonacci.Fibonacci(n)
+	if err != nil {
+		http.Error(w, err.Error(), 400)
+		return
+	}
+	enc.Encode(fibs)
 }
 
 func main() {
