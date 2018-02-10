@@ -1,15 +1,37 @@
 package fibonacci
 
 import (
-	"reflect"
 	"testing"
 )
 
-func TestFibonacci(t *testing.T) {
-	fibs := Fibonacci(2)
-	expected := {1, 2}
+func compareFibs(a []uint, b []uint) bool {
+	if len(a) != len(b) {
+		return false
+	}
 
-	if !reflect.DeepEqual(fibs, {1, 2}){
-		t.Error("Expected [1, 2], got ", fibs)
+	for i := 0; i < len(a); i++ {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+
+	return true
+}
+
+func TestFibonacci13(t *testing.T) {
+	fibs := Fibonacci(13)
+	expected := []uint{0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144}
+
+	if !compareFibs(fibs, expected) {
+		t.Errorf("Expected %v, got %v", expected, fibs)
+	}
+}
+
+func TestFibonacci0(t *testing.T) {
+	fibs := Fibonacci(0)
+	expected := []uint{0}
+
+	if !compareFibs(fibs, expected) {
+		t.Errorf("Expected %v, got %v", expected, fibs)
 	}
 }
