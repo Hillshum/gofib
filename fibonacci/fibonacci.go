@@ -11,6 +11,9 @@ import (
 
 // Fibonacci Returns a slice with all Fibonacci numbers up to n
 func Fibonacci(n int) ([]uint, error) {
+	if n < 0 {
+		return nil, errors.New("Fibonacci input must be non-negative")
+	}
 
 	fibs := []uint{0}
 

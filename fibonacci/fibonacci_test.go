@@ -30,7 +30,7 @@ func TestFibonacci13(t *testing.T) {
 	}
 }
 
-func TestFibonacci0(t *testing.T) {
+func TestFibonacciZero(t *testing.T) {
 	fibs, err := Fibonacci(0)
 	expected := []uint{0}
 
@@ -42,8 +42,17 @@ func TestFibonacci0(t *testing.T) {
 	}
 }
 
-func TestFibonacci95(t *testing.T) {
+func TestFibonacciOverflow(t *testing.T) {
 	_, err := Fibonacci(94)
+
+	if err == nil {
+		t.Error("Expected error, got none")
+	}
+
+}
+
+func TestFibonacciNegative(t *testing.T) {
+	_, err := Fibonacci(-1)
 
 	if err == nil {
 		t.Error("Expected error, got none")
