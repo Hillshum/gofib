@@ -12,7 +12,11 @@ import (
 
 func fib(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
-	n, _ := strconv.Atoi(ps.ByName("n"))
+	n, err := strconv.Atoi(ps.ByName("n"))
+	if err != nil {
+		http.Error(w, err.Error(), 400)
+		return
+	}
 	enc := json.NewEncoder(w)
 	enc.Encode(fibonacci.Fibonacci(n))
 }
