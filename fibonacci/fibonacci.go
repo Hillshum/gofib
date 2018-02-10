@@ -6,12 +6,14 @@ Much of this is from https://www.dotnetperls.com/fibonacci-go
 package fibonacci
 
 // Fibonacci Returns a slice with all Fibonacci numbers up to n
-func Fibonacci(n int) []int {
+func Fibonacci(n int) []uint {
 
-	fibs := []int{}
+	fibs := []uint{}
 
-	a := 0
-	b := 1
+	var (
+		a uint = 0
+		b uint = 1
+	)
 	// Iterate until desired position in sequence.
 	for i := 0; i < n; i++ {
 		// Use temporary variable to swap values.
