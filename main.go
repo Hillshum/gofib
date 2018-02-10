@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"log"
 	"net/http"
 	"strconv"
@@ -11,11 +11,10 @@ import (
 )
 
 func fib(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	w.Header().Set("Content-Type", "application/json")
 	n, _ := strconv.Atoi(ps.ByName("n"))
-	fibs := fibonacci.Fibonacci(n)
-	fmt.Print(fibs)
-	fmt.Fprintf(w, "The fib series is %v\n", fibs)
-
+	enc := json.NewEncoder(w)
+	enc.Encode(fibonacci.Fibonacci(n))
 }
 
 func main() {
