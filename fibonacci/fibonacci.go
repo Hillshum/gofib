@@ -1,6 +1,6 @@
 /*
+Package fibonacci provides the Fibonacci sequence
 An iterative Fibbonacci sequence generator
-
 Much of this is from https://www.dotnetperls.com/fibonacci-go
 */
 package fibonacci
@@ -11,7 +11,7 @@ func Fibonacci(n int) []uint {
 	fibs := []uint{}
 
 	var (
-		a uint = 0
+		a uint
 		b uint = 1
 	)
 	// Iterate until desired position in sequence.
